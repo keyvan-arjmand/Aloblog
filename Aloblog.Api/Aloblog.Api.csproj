@@ -15,15 +15,15 @@
         </PackageReference>
         <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="9.0.6" />
         <PackageReference Include="MyTested.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="9.0.0" />
-        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.6"/>
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.6" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.1" />
         <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.12.1" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Aloblog.Application\Aloblog.Application.csproj"/>
-        <ProjectReference Include="..\Aloblog.Domain\Aloblog.Domain.csproj"/>
-        <ProjectReference Include="..\Aloblog.Infrastructure\Aloblog.Infrastructure.csproj"/>
+        <ProjectReference Include="..\Aloblog.Application\Aloblog.Application.csproj" />
+        <ProjectReference Include="..\Aloblog.Domain\Aloblog.Domain.csproj" />
+        <ProjectReference Include="..\Aloblog.Infrastructure\Aloblog.Infrastructure.csproj" />
     </ItemGroup>
 
     <ItemGroup>
