@@ -2,10 +2,9 @@
 
 namespace Aloblog.Domain.Entities.MainPages;
 
-public class AloBegooService : BaseEntity
+public class PageDetail:BaseEntity
 {
+    public string Patch { get; set; } = string.Empty;
     public string Title { get; set; } = string.Empty;
-    public string ImageUrl { get; set; } = string.Empty;
-    public string Alt { get; set; } = string.Empty;
     public string Description { get; set; } = string.Empty;
 }

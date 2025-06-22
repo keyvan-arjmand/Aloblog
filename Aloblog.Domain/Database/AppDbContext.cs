@@ -31,7 +31,7 @@ public class AppDbContext : IdentityDbContext<User, Role, int>
     public DbSet<Magazine> Magazines { set; get; }
     public DbSet<WorkFlow> WorkFlows { set; get; }
     public DbSet<WorkFlowItem> WorkFlowItems { set; get; }
-    public DbSet<AloBegooService> AloBegooServices { set; get; }
+    public DbSet<Service> Services { set; get; }
     public DbSet<BrandSlider> BrandSliders { set; get; }
     public DbSet<CategorySection> CategorySections { set; get; }
     public DbSet<DesignTree> DesignTrees { set; get; }
@@ -41,6 +41,7 @@ public class AppDbContext : IdentityDbContext<User, Role, int>
     public DbSet<MediaGrid> MediaGrids { set; get; }
     public DbSet<Blog> Blogs { set; get; }
     public DbSet<BlogDetail> BlogDetails { set; get; }
+    public DbSet<PageDetail> PageDetails { set; get; }
 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
