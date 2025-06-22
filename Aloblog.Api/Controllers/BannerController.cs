@@ -80,4 +80,8 @@ public class BannerController(IUnitOfWork _unitOfWork, IFileService _fileService
 
         return Ok(new ApiResult<bool>(true, "بنر با موفقیت حذف شد", ApiResultStatusCode.Success));
     }
+    
+    
+    
+    
 }
