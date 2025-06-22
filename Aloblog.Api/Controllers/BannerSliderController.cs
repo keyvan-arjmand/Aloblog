@@ -7,19 +7,21 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Aloblog.Api.Controllers;
 
-public class BannerSliderSliderController(IUnitOfWork _unitOfWork, IFileService _fileService) :BaseApiController
+public class BannerSliderSliderController(IUnitOfWork _unitOfWork, IFileService _fileService) : BaseApiController
 {
- [HttpGet("GetBannerSliders")]
+    [HttpGet("GetBannerSliders")]
     public async Task<ActionResult<ApiResult<List<BannerSlider>>>> GetBannerSliders()
     {
         var result = await _unitOfWork.GenericRepository<BannerSlider>().TableNoTracking.ToListAsync();
-        return Ok(new ApiResult<List<BannerSlider>>(result, "بنرها با موفقیت دریافت شدند", ApiResultStatusCode.Success));
+        return Ok(new ApiResult<List<BannerSlider>>(result, "بنرها با موفقیت دریافت شدند",
+            ApiResultStatusCode.Success));
     }
 
     [HttpGet("GetBannerSliderById/{id}")]
     public async Task<ActionResult<ApiResult<BannerSlider>>> GetBannerSliderById(int id)
     {
-        var result = await _unitOfWork.GenericRepository<BannerSlider>().TableNoTracking.FirstOrDefaultAsync(x => x.Id == id);
+        var result = await _unitOfWork.GenericRepository<BannerSlider>().TableNoTracking
+            .FirstOrDefaultAsync(x => x.Id == id);
 
         if (result == null)
             return NotFound(new ApiResult<BannerSlider>(null, "بنر یافت نشد", ApiResultStatusCode.NotFound));
@@ -28,7 +30,8 @@ public class BannerSliderSliderController(IUnitOfWork _unitOfWork, IFileService 
     }
 
     [HttpPost("CreateBannerSlider")]
-    public async Task<ActionResult<ApiResult<BannerSlider>>> CreateBannerSlider([FromForm] InsertBannerSlider BannerSlider)
+    public async Task<ActionResult<ApiResult<BannerSlider>>> CreateBannerSlider(
+        [FromForm] InsertBannerSlider BannerSlider)
     {
         if (BannerSlider.ImageUrl == null || BannerSlider.ImageUrl.Length == 0)
         {
@@ -50,7 +53,8 @@ public class BannerSliderSliderController(IUnitOfWork _unitOfWork, IFileService 
     }
 
     [HttpPut("UpdateBannerSlider/{id}")]
-    public async Task<ActionResult<ApiResult<BannerSlider>>> UpdateBannerSlider(int id, [FromForm] UpdateBannerSlider BannerSlider)
+    public async Task<ActionResult<ApiResult<BannerSlider>>> UpdateBannerSlider(int id,
+        [FromForm] UpdateBannerSlider BannerSlider)
     {
         var imagePath = _fileService.UploadFile(BannerSlider.ImageUrl, "BannerSliders");
 
@@ -70,7 +74,8 @@ public class BannerSliderSliderController(IUnitOfWork _unitOfWork, IFileService 
     [HttpDelete("DeleteBannerSlider/{id}")]
     public async Task<ActionResult<ApiResult<bool>>> DeleteBannerSlider(int id)
     {
-        var BannerSlider = await _unitOfWork.GenericRepository<BannerSlider>().Table.FirstOrDefaultAsync(x => x.Id == id);
+        var BannerSlider =
+            await _unitOfWork.GenericRepository<BannerSlider>().Table.FirstOrDefaultAsync(x => x.Id == id);
         if (BannerSlider == null)
             return NotFound(new ApiResult<bool>(false, "بنر یافت نشد", ApiResultStatusCode.NotFound));
 
