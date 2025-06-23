@@ -1,6 +1,6 @@
 ﻿using Aloblog.Domain.Common;
 
-namespace Aloblog.Domain.Entities.MainPages;
+namespace Aloblog.Domain.Entities.Services;
 
 public class Service : BaseEntity
 {

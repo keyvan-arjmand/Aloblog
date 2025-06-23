@@ -1,6 +1,12 @@
 ﻿using Aloblog.Domain.Entities.Banners;
 using Aloblog.Domain.Entities.Blogs;
+using Aloblog.Domain.Entities.Categories;
+using Aloblog.Domain.Entities.Faqs;
+using Aloblog.Domain.Entities.FooterLinks;
 using Aloblog.Domain.Entities.MainPages;
+using Aloblog.Domain.Entities.Orders;
+using Aloblog.Domain.Entities.SeoPages;
+using Aloblog.Domain.Entities.Services;
 using Aloblog.Domain.Entities.Users;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -15,7 +21,6 @@ public class AppDbContext : IdentityDbContext<User, Role, int>
 
     public AppDbContext()
     {
-        
     }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -25,6 +30,7 @@ public class AppDbContext : IdentityDbContext<User, Role, int>
         );
         base.OnConfiguring(optionsBuilder);
     }
+
     public DbSet<Banner> Banners { set; get; }
     public DbSet<BannerSlider> BannerSliders { set; get; }
     public DbSet<MainBanner> MainBanners { set; get; }
@@ -33,20 +39,20 @@ public class AppDbContext : IdentityDbContext<User, Role, int>
     public DbSet<WorkFlowItem> WorkFlowItems { set; get; }
     public DbSet<Service> Services { set; get; }
     public DbSet<BrandSlider> BrandSliders { set; get; }
-    public DbSet<CategorySection> CategorySections { set; get; }
-    public DbSet<DesignTree> DesignTrees { set; get; }
-    public DbSet<DesignItem> DesignItems { set; get; }
+    public DbSet<Category> Categories { set; get; }
     public DbSet<Faq> Faqs { set; get; }
     public DbSet<FaqItem> FaqItems { set; get; }
     public DbSet<MediaGrid> MediaGrids { set; get; }
     public DbSet<Blog> Blogs { set; get; }
     public DbSet<BlogDetail> BlogDetails { set; get; }
     public DbSet<PageDetail> PageDetails { set; get; }
+    public DbSet<Order> Orders { set; get; }
+    public DbSet<Footer> Footers { set; get; }
 
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-       // modelBuilder.Entity<City>().HasQueryFilter(x => !x.IsDelete);
+        // modelBuilder.Entity<City>().HasQueryFilter(x => !x.IsDelete);
 
         base.OnModelCreating(modelBuilder);
     }
