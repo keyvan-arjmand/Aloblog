@@ -7,9 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Aloblog.Api.Controllers;
 
-[Route("api/[controller]")]
-[ApiController]
-public class FooterLinksController(IUnitOfWork _unitOfWork) : ControllerBase
+public class FooterLinksController(IUnitOfWork _unitOfWork) : BaseApiController
 {
     [HttpGet("GetFooters")]
     public async Task<ActionResult<ApiResult<List<Footer>>>> GetFooters()
