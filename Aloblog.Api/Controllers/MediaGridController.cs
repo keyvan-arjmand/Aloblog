@@ -25,7 +25,7 @@ public class MediaGridController(IUnitOfWork _unitOfWork, IFileService _fileServ
             .FirstOrDefaultAsync(x => x.Id == id);
 
         if (result == null)
-            return NotFound(new ApiResult<MediaGrid>(null, "مدیا یافت نشد", ApiResultStatusCode.NotFound));
+            return NotFound(new ApiResult( "مدیا یافت نشد", ApiResultStatusCode.NotFound));
 
         return Ok(new ApiResult<MediaGrid>(result, "مدیا با موفقیت دریافت شد", ApiResultStatusCode.Success));
     }
@@ -33,11 +33,17 @@ public class MediaGridController(IUnitOfWork _unitOfWork, IFileService _fileServ
     [HttpPost("CreateMediaGrid")]
     public async Task<ActionResult<ApiResult<MediaGrid>>> CreateMediaGrid([FromForm] InsertMediaGridDto dto)
     {
-        if (dto.MediaUrl == null || dto.MediaUrl.Length == 0)
-            return BadRequest(new ApiResult<MediaGrid>(null, "فایل مدیا الزامی است", ApiResultStatusCode.BadRequest));
+        var mediaPath = string.Empty;
+        if (dto.MediaUrl != null || dto.MediaUrl.Length != 0)
+        {
+            mediaPath = _fileService.UploadFile(dto.MediaUrl, "media");
+        }
 
-        var mediaPath = _fileService.UploadFile(dto.MediaUrl, "media");
-        var posterPath = dto.Poster != null ? _fileService.UploadFile(dto.Poster, "media") : null;
+        var posterPath = string.Empty;
+        if (dto.Poster != null || dto.Poster.Length != 0)
+        {
+            posterPath = _fileService.UploadFile(dto.MediaUrl, "media");
+        }
 
         var entity = new MediaGrid
         {
@@ -57,7 +63,7 @@ public class MediaGridController(IUnitOfWork _unitOfWork, IFileService _fileServ
     {
         var existing = await _unitOfWork.GenericRepository<MediaGrid>().Table.FirstOrDefaultAsync(x => x.Id == id);
         if (existing == null)
-            return NotFound(new ApiResult<MediaGrid>(null, "مدیا یافت نشد", ApiResultStatusCode.NotFound));
+            return NotFound(new ApiResult("مدیا یافت نشد", ApiResultStatusCode.NotFound));
 
         var mediaPath = dto.MediaUrl != null ? _fileService.UploadFile(dto.MediaUrl, "media") : existing.MediaUrl;
         var posterPath = dto.Poster != null ? _fileService.UploadFile(dto.Poster, "media") : existing.Poster;

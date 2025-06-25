@@ -7,9 +7,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Aloblog.Api.Controllers;
 
-[Route("api/[controller]")]
-[ApiController]
-public class OrderController(IUnitOfWork _unitOfWork) : ControllerBase
+
+public class OrderController(IUnitOfWork _unitOfWork) : BaseApiController
 {
     [HttpGet("GetOrders")]
     public async Task<ActionResult<ApiResult<List<Order>>>> GetOrders()
